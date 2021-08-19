@@ -4,7 +4,7 @@ import { fetchPlugin } from "bundler/plugins/fetch-plugin";
 
 let service: esbuild.Service;
 
-const bundle = async function(code:string) {
+const bundle = async function (code: string) {
   if (!service) {
     service = await esbuild.startService({
       worker: true,
@@ -12,7 +12,8 @@ const bundle = async function(code:string) {
     });
   }
 
-  const result = await service.build({
+  try {
+    const result = await service.build({
       entryPoints: ["index.js"],
       bundle: true,
       write: false,
@@ -23,8 +24,16 @@ const bundle = async function(code:string) {
       },
     });
 
-    return result.outputFiles[0].text;
-  
-}
+    return {
+      code: result.outputFiles[0].text,
+      err: "",
+    };
+  } catch (err) {
+    return {
+      code: "",
+      err: err.message,
+    };
+  }
+};
 
 export default bundle;
