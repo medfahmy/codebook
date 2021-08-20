@@ -27,8 +27,8 @@ export interface UpdateCellAction {
 export interface InsertCellBeforeAction {
   type: ActionType.INSERT_CELL_BEFORE;
   payload: {
-    id: string;
-    cellType: CellType;
+    id: string | null;
+    type: CellType;
   };
 }
 
