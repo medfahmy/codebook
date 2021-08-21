@@ -13,13 +13,10 @@ interface CodeEditorProps {
   onChange: (value: string) => void;
 }
 
-const CodeEditor: React.FC<CodeEditorProps> = function ({
-  initialValue,
-  onChange,
-}) {
+const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
   const editorRef = useRef<editor.IStandaloneCodeEditor>();
 
-  const handleMount: OnMount = function (editor) {
+  const handleMount: OnMount = (editor) => {
     editorRef.current = editor;
     editor.getModel()?.updateOptions({ tabSize: 2 });
 
@@ -37,13 +34,13 @@ const CodeEditor: React.FC<CodeEditorProps> = function ({
     );
   };
 
-  const handleChange: OnChange = function (value) {
+  const handleChange: OnChange = (value) => {
     if (value) {
       onChange(value);
     }
   };
 
-  const onFormatClick = function () {
+  const onFormatClick = () => {
     // get the current value from the editor
     const value = editorRef.current?.getValue();
     // const value = editorRef.current?.getModel()?.getValue();

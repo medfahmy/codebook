@@ -2,7 +2,7 @@ import MDEditor from "@uiw/react-md-editor";
 import React, { useEffect, useRef, useState } from "react";
 import "styles/text-editor.css";
 
-const TextEditor: React.FC = function () {
+const TextEditor: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState("# Header");

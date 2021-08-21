@@ -5,7 +5,7 @@ import bundle from "bundler";
 import "bulmaswatch/superhero/bulmaswatch.min.css";
 import Resizable from "./resizable";
 
-const CodeCell = function () {
+const CodeCell = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");

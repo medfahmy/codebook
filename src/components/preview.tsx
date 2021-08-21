@@ -41,7 +41,7 @@ const html = `
   </html>
 `;
 
-const Preview: React.FC<PreviewProps> = function ({ code, err }) {
+const Preview: React.FC<PreviewProps> = ({ code, err }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {

@@ -13,4 +13,12 @@ store.dispatch({
   },
 });
 
+store.dispatch({
+  type: ActionType.INSERT_CELL_BEFORE,
+  payload: {
+    id: null,
+    type: "markdown",
+  },
+});
+
 console.log(store.getState());

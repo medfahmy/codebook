@@ -1,6 +1,5 @@
 import { ActionType } from "state/action-types";
 import {
-  Action,
   Direction,
   DeleteCellAction,
   InsertCellBeforeAction,
