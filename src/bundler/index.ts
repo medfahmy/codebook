@@ -4,7 +4,7 @@ import { fetchPlugin } from "bundler/plugins/fetch-plugin";
 
 let service: esbuild.Service;
 
-const bundle = async function (code: string) {
+export const bundle = async function (code: string) {
   if (!service) {
     service = await esbuild.startService({
       worker: true,
@@ -35,5 +35,3 @@ const bundle = async function (code: string) {
     };
   }
 };
-
-export default bundle;

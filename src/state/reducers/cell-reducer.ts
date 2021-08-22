@@ -23,7 +23,7 @@ const randomId = () => {
   return Math.random().toString(36).substr(2, 5);
 };
 
-const reducer = produce((state: CellState, action: Action) => {
+export const cellReducer = produce((state: CellState, action: Action) => {
   switch (action.type) {
     case ActionType.UPDATE_CELL:
       const { id, content } = action.payload;
@@ -73,5 +73,3 @@ const reducer = produce((state: CellState, action: Action) => {
       return;
   }
 }, initialState);
-
-export default reducer;

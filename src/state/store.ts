@@ -2,12 +2,13 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import reducers from "state/reducers";
 import { ActionType } from "state/action-types";
+import { bundlerMiddleware } from "state/middleware/bundler-middleware";
 
 export const store = createStore(
   reducers,
   {},
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(bundlerMiddleware, thunk),
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
       (window as any).__REDUX_DEVTOOLS_EXTENSION__()
   )
