@@ -29,7 +29,7 @@ export const updateCell = (id: string, content: string): UpdateCellAction => {
 };
 
 export const insertCellBefore = (
-  id: string,
+  id: string | null,
   cellType: CellType
 ): InsertCellBeforeAction => {
   return {
