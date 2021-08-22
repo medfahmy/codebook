@@ -32,7 +32,7 @@ const reducer = produce((state: CellState, action: Action) => {
 
     case ActionType.DELETE_CELL:
       delete state.data[action.payload];
-      state.order.filter((id) => id !== action.payload);
+      state.order = state.order.filter((id) => id !== action.payload);
       return;
 
     case ActionType.MOVE_CELL:
