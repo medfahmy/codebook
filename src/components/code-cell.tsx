@@ -1,20 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CodeEditor from "components/code-editor";
 import Preview from "components/preview";
-import Resizable from "components/resizable";
-import { bundle } from "bundler";
+import { Resizable } from "components/resizable";
 import { Cell } from "state";
 import { useActions } from "hooks/use-actions";
-import "bulmaswatch/superhero/bulmaswatch.min.css";
 import { useTypedSelector } from "hooks/use-typed-selector";
+import "bulmaswatch/superhero/bulmaswatch.min.css";
+import "styles/code-cell.css";
 
 interface CodeCellProps {
   cell: Cell;
 }
 
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  const { updateCell } = useActions();
-  const { code, err } = useTypedSelector((state) => state.bundles[cell.id]);
+  const { updateCell, createBundle } = useActions();
+  const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+
+  useEffect(() => {
+    if (!bundle) {
+      createBundle(cell.id, cell.content);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      createBundle(cell.id, cell.content);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cell.id, cell.content, createBundle]);
 
   return (
     <Resizable direction="vertical">
@@ -31,7 +47,18 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        <Preview code={code} err={err} />
+
+        <div className="preview-wrapper">
+          {!bundle || bundle.loading ? (
+            <div className="progress-cover">
+              <progress className="progress is-small is-primary" max="100">
+                loading
+              </progress>
+            </div>
+          ) : (
+            <Preview code={bundle.code} err={bundle.err} />
+          )}
+        </div>
       </div>
     </Resizable>
   );

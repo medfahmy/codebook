@@ -26,15 +26,15 @@ export const bundlerMiddleware: Middleware =
     clearTimeout(timer);
     timer = setTimeout(async () => {
       console.log("starting bundling");
-      const result = await bundle(action.payload.content);
+      // const result = await bundle(action.payload.content);
 
-      dispatch({
-        type: ActionType.BUNDLE_CREATED,
-        payload: {
-          id: action.payload.id,
-          bundle: result,
-        },
-      });
+      // dispatch({
+      //   type: ActionType.BUNDLE_CREATED,
+      //   payload: {
+      //     id: action.payload.id,
+      //     bundle: result,
+      //   },
+      // });
 
       console.log("dispatched bundle created");
     }, 750);
