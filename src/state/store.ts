@@ -13,6 +13,8 @@ export const store = createStore(
   )
 );
 
+export type TypedDispatch = typeof store.dispatch;
+
 store.dispatch({
   type: ActionType.INSERT_CELL_AFTER,
   payload: {

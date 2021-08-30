@@ -5,9 +5,10 @@ import { Resizable } from "components/resizable";
 import { Cell } from "state";
 import { useActions } from "hooks/use-actions";
 import { useTypedSelector } from "hooks/use-typed-selector";
+import { useCumulativeCode } from "hooks/use-cumulative-code";
+
 import "bulmaswatch/superhero/bulmaswatch.min.css";
 import "styles/code-cell.css";
-import { useCumulativeCode } from "hooks/use-cumulative-code";
 
 interface CodeCellProps {
   cell: Cell;

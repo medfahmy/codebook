@@ -32,17 +32,6 @@ export interface InsertCellAfterAction {
   };
 }
 
-// export interface BundleCreatedAction {
-//   type: ActionType.BUNDLE_CREATED;
-//   payload: {
-//     id: string;
-//     bundle: {
-//       code: string;
-//       err: string;
-//     };
-//   };
-// }
-
 export interface BundleStartAction {
   type: ActionType.BUNDLE_START;
   payload: {
