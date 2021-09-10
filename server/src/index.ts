@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { router } from "./router";
 import { config } from "./utils/config";
 import { log } from "./utils/log";
@@ -17,7 +17,10 @@ app.use(express.urlencoded({ extended: false }));
 
 export const connect = () => {
   return mongoose
-    .connect(mongoURI)
+    .connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
     .then(() => log.info("database connected"))
     .catch((err) => {
       log.error("db error", err);

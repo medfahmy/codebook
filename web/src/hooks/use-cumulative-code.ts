@@ -30,7 +30,7 @@ export const useCumulativeCode = (cellId: string) => {
     const cumulativeCode = [];
 
     for (let c of orderedCells) {
-      if (c.type === "code") {
+      if (c.type === "javascript") {
         if (c.id === cellId) {
           cumulativeCode.push(showFunc);
         } else {

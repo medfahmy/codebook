@@ -19,7 +19,7 @@ store.dispatch({
   type: ActionType.INSERT_CELL_AFTER,
   payload: {
     id: null,
-    type: "code",
+    type: "javascript",
   },
 });
 
@@ -35,7 +35,7 @@ store.dispatch({
   type: ActionType.INSERT_CELL_AFTER,
   payload: {
     id: null,
-    type: "code",
+    type: "javascript",
   },
 });
 

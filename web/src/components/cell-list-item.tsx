@@ -11,7 +11,7 @@ interface CellListItemProps {
 const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
   let child: JSX.Element;
 
-  if (cell.type === "code") {
+  if (cell.type === "javascript") {
     child = (
       <>
         <div className="action-bar-wrapper">
