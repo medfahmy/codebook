@@ -14,7 +14,9 @@ const CellSchema = new Schema(
     content: { type: String, required: true, unique: true },
     type: { type: String, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-export const Cell = model<CellDocument>("cell", CellSchema);
+export const Cell = model<CellDocument>("Cell", CellSchema);

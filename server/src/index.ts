@@ -1,14 +1,16 @@
 import express from "express";
-import { router } from "./router";
-import { config } from "./utils/config";
-import { log } from "./utils/log";
+import { UserRouter } from "./routes/user.router";
+import { config } from "./config/config";
+import { log } from "./config/logger";
+import { logMethod } from "./middleware/logMethod";
 import mongoose from "mongoose";
 import cors from "cors";
 
-const { port, host, mongoURI } = config;
+const { port, host, mongoURI, mongoOptions } = config;
 
 const app = express();
 
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -18,26 +20,23 @@ app.use(
     credentials: true,
   })
 );
+app.use(logMethod);
 
-// app.get("/", (_: Request, res: Response) => {
-//   res.send("hello");
-// });
+// routes
+app.use("/api/users", UserRouter);
 
-export const connect = () => {
+// database
+export const connectDB = () => {
   return mongoose
-    .connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => log.info("database connected"))
+    .connect(mongoURI, mongoOptions)
+    .then(() => log.info("connected to mongodb"))
     .catch((err) => {
-      log.error("db error", err);
+      log.error("mongodb error", err);
       process.exit(1);
     });
 };
 
 app.listen(port, host, () => {
   log.info(`server running at http://${host}:${port}`);
-  connect();
-  router(app);
+  connectDB();
 });

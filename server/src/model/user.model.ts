@@ -1,16 +1,17 @@
-import { Schema, model, Document, HookNextFunction } from "mongoose";
-import mongoose from "mongoose";
+import { Schema, model, Document } from "mongoose";
 import bcrypt from "bcrypt";
-import { config } from "../utils/config";
-import { string } from "yup";
+import { config } from "../config/config";
 
+export interface IUser {
+  email: string;
+  username: string;
+  password: string;
+}
 export interface UserDocument extends Document {
   email: string;
   username: string;
   password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  comparePassword(candidatePassword: string): Promise<boolean>;
+  // comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
 const UserSchema = new Schema(
@@ -19,32 +20,32 @@ const UserSchema = new Schema(
     username: { type: String, required: true },
     password: { type: String, required: true },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-UserSchema.pre("save", async function (next: HookNextFunction) {
-  let user = this as UserDocument;
+// UserSchema.pre("save", async function () {
+//   let user = this as UserDocument;
 
-  //hash the password if it has benn modified or is new
-  if (!user.isModified("password")) {
-    return next();
-  }
+//   //hash the password if it has been modified or is new
+//   if (user.isModified("password")) {
+//     const salt = await bcrypt.genSalt(config.saltWorkFactor);
 
-  const salt = await bcrypt.genSalt(config.saltWorkFactor);
+//     const hash = await bcrypt.hashSync(user.password, salt);
 
-  const hash = await bcrypt.hashSync(user.password, salt);
+//     user.password = hash;
+//   }
+// });
 
-  user.password = hash;
+// UserSchema.methods.comparePassword = async function (
+//   candidatePassword: string
+// ) {
+//   const user = this as UserDocument;
 
-  return next();
-});
+//   return bcrypt
+//     .compare(candidatePassword, user.password)
+//     .catch((_error) => false);
+// };
 
-UserSchema.methods.comparePassword = async function (
-  candidatePassword: string
-) {
-  const user = this as UserDocument;
-
-  return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
-};
-
-export const User = model<UserDocument>("user", UserSchema);
+export const User = model<UserDocument>("User", UserSchema);
