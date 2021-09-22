@@ -9,7 +9,7 @@ export interface CellDocument extends Document {
   updatedAt: Date;
 }
 
-const UserSchema = new Schema(
+const CellSchema = new Schema(
   {
     content: { type: String, required: true, unique: true },
     type: { type: String, required: true },
@@ -17,4 +17,4 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-export const Cell = model<CellDocument>("user", UserSchema);
+export const Cell = model<CellDocument>("cell", CellSchema);
