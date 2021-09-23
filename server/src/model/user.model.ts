@@ -1,12 +1,7 @@
 import { Schema, model, Document } from "mongoose";
-import bcrypt from "bcrypt";
-import { config } from "../config/config";
+// import bcrypt from "bcrypt";
+// import { config } from "../config/config";
 
-export interface IUser {
-  email: string;
-  username: string;
-  password: string;
-}
 export interface UserDocument extends Document {
   email: string;
   username: string;
