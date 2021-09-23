@@ -1,4 +1,5 @@
 import express from "express";
+import { extractJWT } from "../middleware/extractJWT";
 import {
   getAllUsers,
   handleRegister,
@@ -10,7 +11,7 @@ import {
 const UserRouter = express.Router();
 
 UserRouter.get("/get", getAllUsers);
-UserRouter.get("/validate", validateToken);
+UserRouter.get("/validate", extractJWT, validateToken);
 
 UserRouter.post("/register", handleRegister);
 UserRouter.post("/login", handleLogin);
