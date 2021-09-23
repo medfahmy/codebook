@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
 
-const { secret, issuer, expireTime } = config.token;
+const { secret } = config.token;
 
 export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
     let token = req.headers.authorization?.split(" ")[1];
