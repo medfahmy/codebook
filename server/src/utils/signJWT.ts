@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
 import { log } from "../config/logger";
-import { IUser } from "../model/user.model";
+import { UserDocument } from "../model/user.model";
 
 export const signJWT = (
-  user: IUser,
+  user: UserDocument,
   callback: (error: Error | null, token: string | null) => void
 ): void => {
   let timeSinceEpoch = new Date().getTime();
