@@ -95,7 +95,7 @@ export const handleRegister = (
     });
 };
 
-export const handleLogin = async (
+export const handleLogin = (
     req: Request,
     res: Response,
     _next: NextFunction
