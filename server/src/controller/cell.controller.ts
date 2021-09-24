@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Types } from "mongoose";
 import { Cell } from "../model/cell.model";
-// import { log } from "../config/logger";
+import { log } from "../config/logger";
 // import { config } from "../config/config";
 
 export const getAllCells = async (
@@ -41,6 +41,8 @@ export const deleteAllCells = async (
     }
 };
 
+// TODO: implement fetching the current user and comparing it with cell creator to allow operations
+
 export const createCell = async (
     req: Request,
     res: Response,
@@ -65,11 +67,36 @@ export const createCell = async (
     }
 };
 
-// export const updateCell = (
-//     req: Request,
-//     res: Response,
-//     _next: NextFunction
-// ) => {
-//     const { id, content, type } = req.body;
+export const updateCell = async (
+    req: Request,
+    res: Response,
+    _next: NextFunction
+) => {
+    const { id, content } = req.body;
 
-// };
+    if (id) {
+        try {
+            let _cell = await Cell.findOne({ _id: id });
+            _cell!.content = content;
+            try {
+                const cell = await _cell!.save();
+                return res.status(200).json(cell);
+            } catch (error) {
+                log.error(error);
+                return res.status(500).json({
+                    message: error.message,
+                    error,
+                });
+            }
+        } catch (error) {
+            log.error(error);
+            return res.status(400).json({
+                message: "cell not found",
+            });
+        }
+    } else {
+        return res.status(400).json({
+            message: "field 'id' required",
+        });
+    }
+};
