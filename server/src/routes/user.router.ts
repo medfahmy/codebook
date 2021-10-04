@@ -1,11 +1,11 @@
 import express from "express";
 import { extractJWT } from "../middleware/extractJWT";
 import {
-  getAllUsers,
-  handleRegister,
-  handleLogin,
-  deleteAllUsers,
-  validateToken,
+    getAllUsers,
+    handleRegister,
+    handleLogin,
+    deleteAllUsers,
+    validateToken,
 } from "../controller/user.controller";
 
 const UserRouter = express.Router();

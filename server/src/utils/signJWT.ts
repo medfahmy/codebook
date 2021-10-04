@@ -4,36 +4,34 @@ import { log } from "../config/logger";
 import { UserDocument } from "../model/user.model";
 
 export const signJWT = (
-  user: UserDocument,
-  callback: (error: Error | null, token: string | null) => void
+    user: UserDocument,
+    callback: (error: Error | null, token: string | null) => void
 ): void => {
-  let timeSinceEpoch = new Date().getTime();
-  // expiration time in milliseconds
-  let expirationTime =
-    timeSinceEpoch + Number(config.token.expireTime) * 100000;
-  let expirationTimeInSeconds = Math.floor(expirationTime / 1000);
+    let timeSinceEpoch = new Date().getTime();
+    // expiration time in milliseconds
+    let expirationTime =
+        timeSinceEpoch + Number(config.token.expireTime) * 100000;
+    let expirationTimeInSeconds = Math.floor(expirationTime / 1000);
 
-  try {
-    jwt.sign(
-      {
-        email: user.email,
-      },
-      config.token.secret,
-      {
-        issuer: config.token.issuer,
-        algorithm: "HS256",
-        expiresIn: expirationTimeInSeconds,
-      },
-      (error, token) => {
-        if (error) {
-          callback(error, null);
-        } else if (token) {
-          callback(null, token);
-        }
-      }
-    );
-  } catch (error) {
-    log.error(error.message, error);
-    callback(error, null);
-  }
+    try {
+        jwt.sign(
+            { username: user.username },
+            config.token.secret,
+            {
+                issuer: config.token.issuer,
+                algorithm: "HS256",
+                expiresIn: expirationTimeInSeconds,
+            },
+            (error, token) => {
+                if (error) {
+                    callback(error, null);
+                } else if (token) {
+                    callback(null, token);
+                }
+            }
+        );
+    } catch (error) {
+        log.error(error.message, error);
+        callback(error, null);
+    }
 };

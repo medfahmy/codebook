@@ -2,9 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import { Types } from "mongoose";
 import { Cell } from "../model/cell.model";
 import { log } from "../config/logger";
-// import { config } from "../config/config";
 
-export const getAllCells = async (
+export const getCellById = () => {};
+
+export const getCells = async (
     _req: Request,
     res: Response,
     _next: NextFunction

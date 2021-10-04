@@ -60,7 +60,10 @@ export const handleRegister = async (
     res: Response,
     _next: NextFunction
 ) => {
-    const { email, username, password } = req.body;
+    const { username, password } = req.body;
+
+    const usernames = await User.find().select("username").exec();
+    log.info(usernames);
 
     bcryptjs.hash(password, config.saltWorkFactor, async (hashError, hash) => {
         if (hashError) {
@@ -72,7 +75,6 @@ export const handleRegister = async (
 
         const _user = new User({
             _id: new Types.ObjectId(),
-            email,
             username,
             password: hash,
         });

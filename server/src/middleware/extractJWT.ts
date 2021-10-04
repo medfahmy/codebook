@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
+import { log } from "../config/logger";
 
 const { secret } = config.token;
 
@@ -16,6 +17,7 @@ export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
                 });
             } else {
                 res.locals.jwt = decoded;
+                log.info(decoded as object);
                 next();
             }
         });
