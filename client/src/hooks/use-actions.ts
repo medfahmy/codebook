@@ -1,13 +1,10 @@
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "state";
+import { actions } from "state";
 
 export const useActions = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  return useMemo(
-    () => bindActionCreators(actionCreators, dispatch),
-    [dispatch]
-  );
+    return useMemo(() => bindActionCreators(actions, dispatch), [dispatch]);
 };

@@ -1,12 +1,13 @@
-import { combineReducers } from "redux";
-import { cellReducer } from "state/reducers/cell-reducer";
-import { bundleReducer } from "state/reducers/bundle-reducer";
+export {};
+// import { combineReducers } from "redux";
+// import { cellReducer } from "state/reducers/cell-reducer";
+// import { bundleReducer } from "state/reducers/bundle-reducer";
 
-const reducers = combineReducers({
-  cells: cellReducer,
-  bundles: bundleReducer,
-});
+// const reducers = combineReducers({
+//     cells: cellReducer,
+//     bundles: bundleReducer,
+// });
 
-export default reducers;
+// export default reducers;
 
-export type RootState = ReturnType<typeof reducers>;
+// export type RootState = ReturnType<typeof reducers>;

@@ -11,7 +11,6 @@ const { port, host, mongoURI, mongoOptions } = config;
 
 const app = express();
 
-// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -24,11 +23,9 @@ app.use(
 );
 app.use(logMethod);
 
-// routes
 app.use("/api/users", UserRouter);
 app.use("/api/cells", CellRouter);
 
-// database
 export const connectDB = async () => {
     return mongoose.connect(mongoURI, mongoOptions);
 };
