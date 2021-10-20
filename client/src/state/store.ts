@@ -1,48 +1,41 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import reducers from "state/reducers";
-import { ActionType } from "state/action-types";
+import { configureStore } from "@reduxjs/toolkit";
+import { insertCellAfter, cellsReducer } from "./slices/cell.slice";
+import { bundleReducer } from "./slices/bundle.slice";
 
-export const store = createStore(
-  reducers,
-  {},
-  compose(
-    applyMiddleware(thunk),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+export const store = configureStore({
+    reducer: {
+        cells: cellsReducer,
+        bundles: bundleReducer,
+    },
+});
 
 export type TypedDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
-store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: "javascript",
-  },
-});
+store.dispatch(
+    insertCellAfter({
+        id: null,
+        type: "javascript",
+    })
+);
 
-store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: "markdown",
-  },
-});
+store.dispatch(
+    insertCellAfter({
+        id: null,
+        type: "markdown",
+    })
+);
 
-store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: "javascript",
-  },
-});
+store.dispatch(
+    insertCellAfter({
+        id: null,
+        type: "javascript",
+    })
+);
 
-store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: "markdown",
-  },
-});
+store.dispatch(
+    insertCellAfter({
+        id: null,
+        type: "markdown",
+    })
+);
