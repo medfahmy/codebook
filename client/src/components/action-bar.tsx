@@ -1,4 +1,3 @@
-import React from "react";
 import { useActions } from "hooks/use-actions";
 import "styles/action-bar.css";
 
@@ -6,7 +5,7 @@ interface ActionBarProps {
     id: string;
 }
 
-const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
+export const ActionBar = ({ id }: ActionBarProps) => {
     const { deleteCell, moveCell } = useActions();
 
     return (
@@ -40,5 +39,3 @@ const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
         </div>
     );
 };
-
-export default ActionBar;

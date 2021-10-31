@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import CodeEditor from "components/code-editor";
-import Preview from "components/preview";
+import { useEffect } from "react";
+import { CodeEditor } from "components/code-editor";
+import { Preview } from "components/preview";
 import { Resizable } from "components/resizable";
 import { Cell } from "state";
 import { useActions } from "hooks/use-actions";
@@ -14,7 +14,7 @@ interface CodeCellProps {
     cell: Cell;
 }
 
-const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
+export const CodeCell = ({ cell }: CodeCellProps) => {
     const { updateCell, createBundle } = useActions();
     const bundle = useTypedSelector(state => state.bundles[cell.id]);
     const cumulativeCode = useCumulativeCode(cell.id);
@@ -71,5 +71,3 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
         </Resizable>
     );
 };
-
-export default CodeCell;

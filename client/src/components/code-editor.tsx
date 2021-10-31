@@ -13,7 +13,7 @@ interface CodeEditorProps {
   onChange: (value: string) => void;
 }
 
-const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
+export const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
   const editorRef = useRef<editor.IStandaloneCodeEditor>();
 
   const handleMount: OnMount = (editor) => {
@@ -90,5 +90,3 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
     </div>
   );
 };
-
-export default CodeEditor;

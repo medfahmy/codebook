@@ -1,6 +1,6 @@
 import MDEditor from "@uiw/react-md-editor";
 import { useActions } from "hooks/use-actions";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Cell } from "state";
 import "styles/text-editor.css";
 
@@ -8,7 +8,7 @@ interface TextEditorProps {
     cell: Cell;
 }
 
-const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
+export const TextEditor = ({ cell }: TextEditorProps) => {
     const { updateCell } = useActions();
     const ref = useRef<HTMLDivElement | null>(null);
     const [editing, setEditing] = useState(false);
@@ -53,5 +53,3 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
         </div>
     );
 };
-
-export default TextEditor;

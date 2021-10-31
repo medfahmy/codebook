@@ -1,20 +1,13 @@
-import { createBundle } from "state/slices/bundle.slice";
-import {
-    deleteCell,
-    updateCell,
-    insertCellAfter,
-    moveCell,
-} from "state/slices/cell.slice";
+import { createBundle } from 'state/slices/bundles.slice';
+import { deleteCell, updateCell, insertCellAfter, moveCell } from 'state/slices/cells.slice';
 
-export * from "state/store";
-// export * from "state/reducers";
-export * from "state/cell";
-// export * as actionCreators from "state/action-creators";
+export * from 'state/store';
+export * from 'state/slices/cells.slice';
 
-export const actions = {
-    createBundle,
-    moveCell,
-    deleteCell,
-    insertCellAfter,
-    updateCell,
+export const actionCreators = {
+  createBundle,
+  moveCell,
+  deleteCell,
+  insertCellAfter,
+  updateCell,
 };

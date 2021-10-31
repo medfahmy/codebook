@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { useTypedSelector } from "hooks/use-typed-selector";
-import CellListItem from "components/cell-list-item";
-import AddCell from "components/add-cell";
+import { CellListItem } from "components/cell-list-item";
+import { AddCell } from "components/add-cell";
 import "styles/cell-list.css";
 
-const CellList: React.FC = () => {
+export const CellList = () => {
   const cells = useTypedSelector(({ cells: { order, data } }) =>
     order.map((id) => data[id])
   );
@@ -23,5 +23,3 @@ const CellList: React.FC = () => {
     </div>
   );
 };
-
-export default CellList;

@@ -1,4 +1,3 @@
-import React from "react";
 import { useActions } from "hooks/use-actions";
 import "styles/add-cell.css";
 
@@ -7,7 +6,7 @@ interface AddCellProps {
     forceVisible?: boolean;
 }
 
-const AddCell: React.FC<AddCellProps> = ({ prevCellId, forceVisible }) => {
+export const AddCell = ({ prevCellId, forceVisible }: AddCellProps) => {
     const { insertCellAfter } = useActions();
 
     return (
@@ -41,5 +40,3 @@ const AddCell: React.FC<AddCellProps> = ({ prevCellId, forceVisible }) => {
         </div>
     );
 };
-
-export default AddCell;
